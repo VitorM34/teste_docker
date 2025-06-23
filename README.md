@@ -296,6 +296,7 @@ Depois de criar o container, vamos enfim construir nossa aplicação rails
 * No terminal rode rails db:create
 * Isso criara nosso banco de dados
 * Com isso podemos definir do que será nosso projeto e seus objetivos
+---------------------------------
 
 
 
