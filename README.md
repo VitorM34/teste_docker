@@ -217,6 +217,8 @@ ENTRYPOINT ["/home/app/web/entrypoint.sh"]
 
 # Arquivo entrypoint.sh 
 
+lembrando que esse arquivo é essencial para que o projeto funcione
+
 ```
 #! /bin/bash
 
@@ -225,6 +227,76 @@ set -e
 sidekiq -c 1
 
 ```
+
+# Criando uma view para teste
+
+* dentro de app/views/layouts
+* crie uma pasta worker, onde dentro deve conter o Dockerfile e o entrypoint.sh como descritos acima
+
+
+-----------
+# Configurando as rotas
+
+dentro de routes rb vamos colocar os seguites dados, que estao marcados com o icone em vermelho
+
+``` Ruby
+🔺 require 'sidekiq/web'
+
+Rails.application.routes.draw do
+  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+
+  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
+  # Can be used by load balancers and uptime monitors to verify that the app is live.
+  get "up" => "rails/health#show", as: :rails_health_check
+
+  # Defines the root path route ("/")
+  # root "posts#index"
+  🔺 get 'home', to: 'home#index'
+ 🔺 mount Sidekiq::Web => '/sidekiq'
+end
+```
+# Criando um Job para teste
+
+o arquivo do job será send_email_job.rb
+
+``` ruby
+class SendEmailJob < ApplicationJob
+  queue_as :default
+
+  def perform(*args)
+    puts "===== Enviando Email ====="
+    # Simula o envio de um email
+    # Aqui você pode integrar com um serviço de envio de email real, como ActionMailer
+    sleep 10
+    puts "===== Email Enviado ====="
+  end
+end
+
+```
+# Criando um controller para Job
+
+* Aqui criamos um controller, conforme o bloco abaixo
+* O Controller esta como home_controller.rb, o mesmo gerado via terminal
+
+``` ruby
+class HomeController < ApplicationController
+  def index
+   (1..5).to_a.each do |number|
+    SendEmailJob.perform_later
+   @message = "Container Carregado com Sucesso!"
+   
+    end
+  end
+end 
+```
+# Criando o banco de dados
+
+Depois de criar o container, vamos enfim construir nossa aplicação rails
+
+* No terminal rode rails db:create
+* Isso criara nosso banco de dados
+* Com isso podemos definir do que será nosso projeto e seus objetivos
+
 
 
 
