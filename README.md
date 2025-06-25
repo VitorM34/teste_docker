@@ -298,7 +298,14 @@ Depois de criar o container, vamos enfim construir nossa aplicação rails
 
 * No terminal rode rails db:create
 * Isso criara nosso banco de dados
+
+
 * Com isso podemos definir do que será nosso projeto e seus objetivos
+  
+💬 Lembrando que sempre que formos rodar ou criar um banco de dados
+que será rodado no docker, executaremos o comando de (docker compose exec web rails db:create)
+Se caso quisermos ingressar dentro do rails console devemos executar o comando de
+docker compose exec web rails console. 💬
 ---------------------------------
 
 
