@@ -163,6 +163,8 @@ fi
 ```
 # 🟣 Criando um arquivo .env.development para o redis
 
+*Devemos sempre colocar ele dentro da pasta app ok!
+
 ```
 REDIS_URL=redis://redis:6379
 DATABASE_URL=postgresql://postgres:password@db:5432/app_development
