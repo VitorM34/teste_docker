@@ -127,6 +127,7 @@ Ela permite que você rode tarefas demoradas (como envio de e-mails, geração d
 # Criando um arquivo setup_app.sh 
 
 Serve para preparar o ambiente antes de iniciar o servidor Rails ou o Sidekiq, toda vez que o container sobe.
+* Este aquivo de setup a gente coloca dentro de app/config/setup_app.sh
 
 ```
 #! /bin/sh
