@@ -307,6 +307,10 @@ que será rodado no docker, executaremos o comando de (docker compose exec web r
 Se caso quisermos ingressar dentro do rails console devemos executar o comando de
 docker compose exec web rails console. 💬
 ---------------------------------
+#Comandos docker
+* docker restart
+* docker compose build --no-cache web
+* docker compose up
 
 
 
